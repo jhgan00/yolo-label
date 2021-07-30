@@ -97,7 +97,7 @@ if __name__ == "__main__":
 
                 # 잘린 이미지가 최소 크기를 넘기면 저장
                 else:
-                    cropped = pad(cropped) if args.padding else cropped
+                    cropped = pad(cropped) if args.pad else cropped
                     cropped_filename = os.path.basename(filename)[:-4] + "_" + str(counter) + ".jpg"
                     save_path = os.path.join(args.dst_dir, label_dict[label], cropped_filename)
                     io.imsave(save_path, cropped)
