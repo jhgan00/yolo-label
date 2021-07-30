@@ -1,0 +1,6 @@
+none
+happiness
+anger
+sadness
+sleepy
+hungry
