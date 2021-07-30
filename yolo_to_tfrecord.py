@@ -82,7 +82,7 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--src_dir", type=str, default="data/train", help="학습 이미지와 어노테이션이 들어있는 디렉토리")
-    parser.add_argument("--tfrecord_dir", type=str, default="tfrecord", help="tfrecord 데이터를 저장할 디렉토리")
+    parser.add_argument("--dst_dir", type=str, default="tfrecord", help="tfrecord 데이터를 저장할 디렉토리")
     parser.add_argument("--output_filebase", type=str, default="train", help="tfrecord 파일명")
     parser.add_argument("--label_file", type=str, default="labels.txt", help="YOLO 클래스 이름 파일")
     parser.add_argument("--num_shards", type=int, default=1, help="tfrecord 파일 생성 갯수")
@@ -94,12 +94,12 @@ if __name__ == "__main__":
             label = line.strip()
             LABEL_DICT[i] = label
 
-    if not os.path.exists(args.tfrecord_dir):
-        os.mkdir(args.tfrecord_dir)
+    if not os.path.exists(args.dst_dir):
+        os.mkdir(args.dst_dir)
 
     with contextlib2.ExitStack() as tf_record_close_stack:
 
-        output_filebase = os.path.join(args.tfrecord_dir, args.output_filebase)
+        output_filebase = os.path.join(args.dst_dir, args.output_filebase)
         output_tfrecords = tf_record_creation_util.open_sharded_output_tfrecords(
             tf_record_close_stack, output_filebase, args.num_shards
         )

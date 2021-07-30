@@ -48,7 +48,7 @@ if __name__ == "__main__":
     # 1. 커맨드라인 인자 파싱
     parser = argparse.ArgumentParser()
     parser.add_argument("--src_dir", type=str, default="data/train", help="소스 이미지 & 라벨이 들어있는 디렉토리")
-    parser.add_argument("--save_dir", type=str, default="cropped_imgs/train", help="결과를 저장할 디렉토리")
+    parser.add_argument("--dst_dir", type=str, default="cropped_data/train", help="결과를 저장할 디렉토리")
     parser.add_argument("--label_file", type=str, default="labels.txt", help="클래스 라벨이 저장된 파일")
     parser.add_argument("--min_size", type=int, default=100, help="크롭 후 최소 이미지 크기")
     parser.add_argument("--pad", type=bool, default=False, help="True 이면 정사각형 패딩")
@@ -63,7 +63,7 @@ if __name__ == "__main__":
 
     # 3. 결과 저장 디렉토리 생성
     for label in label_dict.values():
-        label_dir = os.path.join(args.save_dir, label)
+        label_dir = os.path.join(args.dst_dir, label)
         if not os.path.exists(label_dir):
             os.makedirs(label_dir)
 
@@ -99,6 +99,6 @@ if __name__ == "__main__":
                 else:
                     cropped = pad(cropped) if args.padding else cropped
                     cropped_filename = os.path.basename(filename)[:-4] + "_" + str(counter) + ".jpg"
-                    save_path = os.path.join(args.save_dir, label_dict[label], cropped_filename)
+                    save_path = os.path.join(args.dst_dir, label_dict[label], cropped_filename)
                     io.imsave(save_path, cropped)
                     counter += 1
