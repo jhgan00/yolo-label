@@ -1,6 +1,4 @@
-none
-happiness
 anger
+happiness
 sadness
-sleepy
-hungry
+yawning
