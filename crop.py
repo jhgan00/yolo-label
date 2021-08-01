@@ -81,6 +81,8 @@ if __name__ == "__main__":
             # 해당하는 이미지 읽기
             img_filename = filename[:-4] + ".jpg"
             img = io.imread(img_filename)
+            if len(img.shape) != 3:
+                continue
 
             # 이미지에 매겨진 어노테이션을 돌면서 사진 자르고 -> 패딩하고 -> 저장
             counter = 0
